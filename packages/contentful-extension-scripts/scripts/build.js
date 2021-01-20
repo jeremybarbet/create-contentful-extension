@@ -3,15 +3,15 @@
 process.env.NODE_ENV = 'production';
 
 const argv = require('yargs').argv;
-
 const Bundler = require('parcel-bundler');
 const urlLoader = require('parcel-plugin-url-loader');
 const chalk = require('chalk');
 const fs = require('fs');
-const paths = require('./utils/paths');
 const postHTML = require('posthtml');
 const posthtmlInlineAssets = require('posthtml-inline-assets');
 const htmlnano = require('htmlnano');
+
+const utilsPaths = require('./utils/paths');
 
 const shouldInlineAssets = argv.inline === false ? false : true;
 const shouldProduceSourceMaps = shouldInlineAssets === false;
@@ -24,6 +24,8 @@ function bytesToSize(bytes) {
   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }
 
+const basePath = argv.basePath || '.';
+const paths = utilsPaths(basePath)
 const entry = paths.src + '/index.html';
 
 // Bundler options

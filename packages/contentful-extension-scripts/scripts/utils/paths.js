@@ -4,11 +4,11 @@ const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-module.exports = {
+module.exports = (basePath) => ({
   packageJson: resolveApp('package.json'),
-  root: resolveApp('.'),
-  src: resolveApp('src'),
-  build: resolveApp('build'),
-  cache: resolveApp('.cache'),
-  coverage: resolveApp('.coverage')
-};
+  root: resolveApp(`${basePath}/.`),
+  src: resolveApp(`${basePath}/src`),
+  build: resolveApp(`${basePath}/build`),
+  cache: resolveApp(`${basePath}/.cache`),
+  coverage: resolveApp(`${basePath}/.coverage`)
+});

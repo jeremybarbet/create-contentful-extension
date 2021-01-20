@@ -3,11 +3,14 @@
 process.env.NODE_ENV = 'development';
 
 const argv = require('yargs').argv;
-
 const Bundler = require('parcel-bundler');
-const paths = require('./utils/paths');
+const chalk = require('chalk');
+
+const utilsPaths = require('./utils/paths');
 const updateExtension = require('./utils/updateExtension');
 
+const basePath = argv.basePath || '.';
+const paths = utilsPaths(basePath)
 const entry = paths.src + '/index.html';
 const https = argv.https || false;
 const port = argv.port || 1234;
