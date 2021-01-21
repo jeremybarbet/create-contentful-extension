@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/contentful/create-contentful-extension/compare/@jeremybarbet/contentful-extension-scripts@0.21.0...@jeremybarbet/contentful-extension-scripts@0.22.0) (2021-01-21)
+
+
+### Features
+
+* pass down args ([38d3e4f](https://github.com/contentful/create-contentful-extension/commit/38d3e4fdbebf3826a9fd78d76d84d245f66e8bed))
+
+
+
+
+
 # 0.21.0 (2021-01-20)
 
 
