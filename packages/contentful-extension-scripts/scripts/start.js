@@ -10,10 +10,14 @@ const utilsPaths = require('./utils/paths');
 const updateExtension = require('./utils/updateExtension');
 
 const basePath = argv.basePath || '.';
-const paths = utilsPaths(basePath)
+const paths = utilsPaths(basePath);
 const entry = paths.src + '/index.html';
 const https = argv.https || false;
 const port = argv.port || 1234;
+const id = argv.id;
+const name = argv.name;
+const spaceId = argv.spaceId;
+const managementToken = argv.mt;
 
 const options = {
   outDir: paths.build, // The out directory to put the build files in, defaults to dist
@@ -31,22 +35,25 @@ const options = {
   hmrHostname: '', // A hostname for hot module reload, default to ''
   detailedReport: false, // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
   https: https, // This flag generates a self-signed certificate, you might have to configure your browser to allow self-signed certificates for localhost
-  autoInstall: false // Disable auto install
+  autoInstall: false, // Disable auto install
 };
 
 const bundler = new Bundler(entry, options);
 
 const run = async () => {
   try {
+    if (!id || !name || !spaceId || !managementToken) {
+      throw new Error('Missing id, name, spaceId or managementToken');
+    }
+
     if (!argv.serveOnly) {
-      await updateExtension(port, https);
+      await updateExtension({ port, https, id, name, spaceId, managementToken });
     }
 
     await bundler.serve(port, https);
   } catch (e) {
     console.log();
-    console.error(chalk.red(e.message));
-    process.exit(1);
+    throw new Error(chalk.red(e.message));
   }
 };
 
