@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/contentful/create-contentful-extension/compare/@jeremybarbet/contentful-extension-scripts@0.22.0...@jeremybarbet/contentful-extension-scripts@0.22.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* pass downn fieldTypes ([08c3c81](https://github.com/contentful/create-contentful-extension/commit/08c3c815e8c1424e1169aaad29f5b05b0b426c1c))
+
+
+
+
+
 # [0.22.0](https://github.com/contentful/create-contentful-extension/compare/@jeremybarbet/contentful-extension-scripts@0.21.0...@jeremybarbet/contentful-extension-scripts@0.22.0) (2021-01-21)
 
 
