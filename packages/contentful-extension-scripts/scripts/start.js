@@ -17,6 +17,7 @@ const port = argv.port || 1234;
 const id = argv.id;
 const name = argv.name;
 const spaceId = argv.spaceId;
+const fieldTypes = argv.fieldTypes;
 const managementToken = argv.mt;
 
 const options = {
@@ -47,7 +48,7 @@ const run = async () => {
     }
 
     if (!argv.serveOnly) {
-      await updateExtension({ port, https, id, name, spaceId, managementToken });
+      await updateExtension({ port, https, id, name, spaceId, fieldTypes, managementToken });
     }
 
     await bundler.serve(port, https);
