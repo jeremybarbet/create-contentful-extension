@@ -36,12 +36,8 @@
     "eslint": "7.14.0"
   },
   "dependencies": {
-    "@contentful/forma-36-fcss": "0.3.0",
-    "@contentful/forma-36-react-components": "3.77.1",
-    "@contentful/forma-36-tokens": "0.10.0",
     "babel-jest": "^26.6.1",
     "chalk": "4.1.0",
-    "contentful-ui-extensions-sdk": "3.31.0",
     "cross-spawn": "7.0.3",
     "fs-extra": "9.0.1",
     "htmlnano": "^0.2.7",
