@@ -9,8 +9,9 @@ const chalk = require('chalk');
 const utilsPaths = require('./utils/paths');
 const updateExtension = require('./utils/updateExtension');
 
-const basePath = argv.basePath || '.';
-const paths = utilsPaths(basePath);
+const inputPath = argv.input || '.';
+const outputPath = argv.output || '.';
+const paths = utilsPaths(inputPath, outputPath);
 const entry = paths.src + '/index.html';
 const https = argv.https || false;
 const port = argv.port || 1234;
@@ -24,7 +25,7 @@ const options = {
   outDir: paths.build, // The out directory to put the build files in, defaults to dist
   outFile: 'index.html', // The name of the outputFile
   watch: true, // Whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
-  cache: true, // Enabled or disables caching, defaults to true
+  cache: false, // Enabled or disables caching, defaults to true
   cacheDir: paths.cache, // The directory cache gets put in, defaults to .cache
   contentHash: false, // Disable content hash from being included on the filename
   minify: false, // Minify files, enabled if process.env.NODE_ENV === 'production'

@@ -24,8 +24,9 @@ function bytesToSize(bytes) {
   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }
 
-const basePath = argv.basePath || '.';
-const paths = utilsPaths(basePath)
+const inputPath = argv.input || '.';
+const outputPath = argv.output || '.';
+const paths = utilsPaths(inputPath, outputPath);
 const entry = paths.src + '/index.html';
 
 // Bundler options
@@ -35,7 +36,7 @@ const options = {
   outFile: 'index.html', // The name of the outputFile
   target: 'browser',
   watch: false, // Whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
-  cache: true, // Enabled or disables caching, defaults to true
+  cache: false, // Enabled or disables caching, defaults to true
   contentHash: true, // Include a content hash in the outputted filenames
   minify: true, // Minify files, enabled if process.env.NODE_ENV === 'production'
   scopeHoist: false, // Turn on experimental scope hoisting/tree shaking flag, for smaller production bundles
@@ -43,21 +44,20 @@ const options = {
   hmr: false, // Enable or disable HMR while watching
   sourceMaps: shouldProduceSourceMaps, // Enable or disable sourcemaps, defaults to enabled (minified builds currently always create sourcemaps)
   detailedReport: true, // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
-  autoInstall: false // Disable auto install
+  autoInstall: false, // Disable auto install
 };
 
 const inlineAssets = async () => {
   const ENC = { encoding: 'utf8' };
-
-  const read = file => fs.readFileSync(file, ENC);
+  const read = (file) => fs.readFileSync(file, ENC);
 
   let html = read(paths.build + '/index.html');
 
   const result = await postHTML([
     posthtmlInlineAssets({
-      cwd: paths.build
+      cwd: paths.build,
     }),
-    htmlnano()
+    htmlnano(),
   ]).process(html);
   html = result.html;
 
